@@ -1,6 +1,6 @@
-Digitale Grundlagen SoSe 2025
+# Digitale Grundlagen SoSe 2025
 
-Die Ergebnisse der Projekte:
+## Die Ergebnisse der Projekte:
 - Teachable Machine: Glas halb voll oder halb leer?
 - Nature of Code: Wattwurmhaufen
 - Text, the Universal Interface: Unterschrift lernen
