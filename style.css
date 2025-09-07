@@ -1,19 +1,25 @@
 body {
-    margin: 0;
+    margin: 0 auto; /* Zentriert den Body horizontal */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     padding-top: 60px; /* Platz für das obere Banner */
     padding-bottom: 70px; /* Platz für die Navigationsleiste lassen */
+    max-width: 800px; /* Maximale Breite der Seite */
+    position: relative; /* Wichtig für die Positionierung der fixierten Elemente */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional: ein Schatten für den Rahmen */
+    min-height: 100vh; /* Stellt sicher, dass der Body mindestens die Höhe des Viewports hat */
 }
 
 main {
-    padding: 1rem;
+    padding: 1rem 1.5rem; /* Oben/Unten 1rem, Links/Rechts 1.5rem */
 }
 
 .top-banner {
-    position: fixed;
+    position: fixed; /* Geändert von absolute zu fixed */
     top: 0;
-    left: 0;
+    left: 50%; /* Zentriert das Element */
+    transform: translateX(-50%); /* Feinjustierung der Zentrierung */
     width: 100%;
+    max-width: 800px; /* Stellt sicher, dass es nicht breiter als der Body wird */
     height: 50px;
     background-color: #f8f8f8;
     border-bottom: 1px solid #e7e7e7;
@@ -62,13 +68,91 @@ main {
     font-size: 1.2rem;
 }
 
+.topic-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.topic-main-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.overlay-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.overlay-link:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.overlay-link img {
+    width: 25px;
+    height: 25px;
+    filter: invert(1); 
+}
+
+.back-link {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.back-link img {
+    width: 20px;
+    height: 20px;
+}
+
+.topic-content {
+    text-align: left;
+}
+
+.topic-content h1 {
+    text-align: center;
+    margin-bottom: 3rem; /* Reduzierter Abstand nach unten */
+    font-size: 1.5rem; /* Kleinere Schriftgröße für H1 */
+    font-weight: 300;
+}
+
+.topic-content h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.topic-content p {
+    font-size: 0.9rem;
+    font-weight: 300; /* Dünnere Schrift */
+    line-height: 1.6; /* Verbessert die Lesbarkeit bei langen Texten */
+    margin-top: 0.1rem;
+}
 
 .bottom-nav {
-    position: fixed;
+    position: fixed; /* Geändert von absolute zu fixed */
     bottom: 0;
-    left: 0;
+    left: 50%; /* Zentriert das Element */
+    transform: translateX(-50%); /* Feinjustierung der Zentrierung */
     width: 100%;
-    height: 60px;
+    max-width: 800px; /* Stellt sicher, dass es nicht breiter als der Body wird */
+    height: 50px;
     background-color: #f8f8f8;
     border-top: 1px solid #e7e7e7;
     display: flex;
@@ -89,14 +173,26 @@ main {
 }
 
 .nav-item img {
-    height: 28px;
+    height: 20px;
 }
 
 .nav-item:hover {
-    background-color: #ddd;
+    background-color: transparent; /* Hintergrundänderung entfernen */
+    border-radius: 0; /* Radiusänderung entfernen */
+    opacity: 1; /* Deckkraft auf 100% setzen */
 }
 
 /* Stil für den aktiven Link */
 .nav-item.active {
-    opacity: 1;
+    opacity: 0.8;
+}
+
+/* Wenn über die Navigationsleiste gehovert wird, bekommen alle Items die Standard-Deckkraft */
+.bottom-nav:hover .nav-item {
+    opacity: 0.5;
+}
+
+/* Das spezifische Item, über das gerade gehovert wird (egal ob aktiv oder nicht), bekommt volle Deckkraft */
+.bottom-nav .nav-item:hover {
+    opacity: 0.8;
 }

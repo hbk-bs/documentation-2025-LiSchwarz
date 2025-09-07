@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thema 1</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="top-banner">
+        <a href="../../index.html">Dokumentation</a>
+    </header>
+
+    <main>
+        <div class="topic-header">
+            <img src="../images/unterschrift.jpeg" alt="Text, the Universal Interface" class="topic-main-image">
+            <a href="https://hbk-bs.github.io/text-the-universal-interface-LiSchwarz/" class="overlay-link">
+                <img src="../images/play.png" alt="Sketch ansehen">
+            </a>
+            <a href="../index.html" class="back-link">
+                <img src="../images/back.png" alt="Zurück zur Startseite">
+            </a>
+        </div>
+        
+        <div class="topic-content">
+            <h1>Text, the Universal Interface</h1>
+            <h2>Unterschrift lernen</h2>
+            <p>In diesem Themen setzen wir uns damit auseinander, was mit Text und APIs in Kombination mit LLMs möglich ist. LLMs (Large Language Models) sind künstliche Intelligenzen, die mit sehr viel Text trainiert wurden und dadurch menschliche Sprache verstehen und generieren können. 
+Unsere Aufgabe war es Anwendungsfälle für LLMs zu finden, die über ein einfaches „Chatten mit einer Figur“ hinausgehen. Dabei sollte die NutzerInnen durch Eingaben, wie Texte, Bilder oder Echtzeitdaten, welche über APIs an große Sprachmodelle gesendet werden, mit unserem Webprojekt interagieren können. Eine API (Application Programming Interface) ist eine Programmierschnittstelle, die es einem Programm ermöglicht, Informationen, Daten oder Funktionen von einem anderen Programm abzufragen oder zu nutzen - wie ein Übersetzer oder ein Bote zwischen zwei Programmen.. EntwicklerInnen können über eine API auf die vorhandenen Funktionen und Daten anderer Anwendungen zugreifen, ohne deren interne Funktionsweise kennen zu müssen, was den Datenaustausch beschleunigt und vereinfacht.
+Der Prozess begann mit der Recherche zu LLMs, dem Experimentieren mit verschiedenen Eingabemöglichkeiten und kleineren Prototypen.
+Für die Projektentwicklung habe ich anschließend frei nach Ideen gesammelt, die mir in den Kopf gekommen sind:
+- Generieren von „Bildern“, nur aus Punkten und Strichen (Sonderzeichen der Tastatur)
+- Eingabe von Zutaten, Rezept als Ausgabe
+- Irgendwas mit Kleidung/ Outfitberatung
+- Sprichwörtergenerator
+- Eingabe von handgeschriebenen Text, KI bewertet Lesbarkeit
+- Antwort der KI in (Straßen-) Schilder
+- Bildeingabe, KI ermittelt wo das Bild aufgenommen wurde
+- Eingabe von gezeichneten Kinderbilder, KI generiert realistisch aussehende Tiere
+- Hunde werden zu Menschen oder umgekehrt (Anspielung auf die Ähnlichkeit zwischen Hunden und Besitzern)
+
+Viele der Ideen, die ich besonders interessant fand, wie die letzten beiden, basieren darauf, dass man Bilder als Eingabe und wieder als Ausgabe hat. Leider war dieser Prozess technisch aufwändiger und soweit ich mich erinnere, nicht mit der kostenlosen Version umsetzbar, weshalb ich diese Ideen verworfen habe. So blieb ich an der Idee hängen, dass die NutzerInnen handgeschriebenen Text Eingeben und dieser irgendwie von der KI weiter verarbeitet, bewertet oder Ähnliches wird. Die erste Idee, die ich weiter vertieft habe setzte sich mit der Schrift von Ärztinnen auf Rezepten auseinander. Die Eingabe sollte über Fotos ablaufen und die Ausgabe auf Text basieren. Die Aufgabe der KI war es hierbei angeblich zu versuchen die Schrift zu lesen, aber daran zu scheitern. 
+
+content: 'Du sollst eine Hilfe sein, um schwer leserliche Schriften auf Rezepten vom Arzt zu entziffern. Aber du kannst es selber nicht. Du redest lange drum herum und versuchst es zu lesen, bis du selber sauer, traurig oder frustriert wirst und den Arzt beschimpfst.{result: string}',
+
+Dabei war es egal, ob die KI die Schrift wirklich nicht richtig lesen konnte oder es eigentlich geschafft hätte, denn das Ziel war eine humorvolle Kritik an mangelnder Lesbarkeit von der Schrift von Ärztinnen. Die Schrift ist so schrecklich, dass sogar die KI die Schrift nicht lesen kann. Eine mögliche Erweiterung zu der Eingabe von Fotos wäre es, dass die NutzerInnen selber schreiben und ihre Schrift auf Lesbarkeit überprüfen lassen. In der Besprechung im Kurs entstand die Idee, diesen Aspekt zu vertiefen. Daher verschob sich der Schwerpunkt des Projekts auf die Schwierigkeit von Unterschriften auf Touchpads für Formulare, Paketzustellungen oder ähnliches. Unterschriften sin fest in unserem Alltag verwurzelt und reichen von eher belanglosen Dingen, wie die Unterschrift auf einem Muttizettel, bishin zu dem Abschluss von einem Kaufvertrag und Bestätigung der eigenen Identität. Die Aufgabe der KI war bestand darin die Unterschrift zu entziffern und über den Inhalt der Formulare zu informieren. 
+
+content: 'Der Nutzer unterschreibt auf dem vorgesehen Feld. Du sollst versuchen die Unterschrift zu lesen. Wenn du es lesen kannst, dann beschreibe sie. Du sollst dich freuen, jubeln und gutes über den Nutzer schreiben. Wichtig: Wenn du die Unterschrift nicht lesen kannst, dann sollst du den Nutzer gemein und frustriert beleidigen, sagen dass er es nochmal versuchen soll und es besser machen soll. Fordere den Nutzer auf es nochmal zu probieren. Du sollst den Nutzer nur loben, wenn du es lesen kannst. Sonst bist du sehr frustriert, beschwerst dich ausführlich und sehr sauer. Antworte in beiden Fällen mindestens in vier Sätzen.Du sollst auf Deutsch antworten und den Nutzer duzen. You are analyzing handwritten text on a form. Describe what you see in a JSON format {result: string}',
+
+Ziel ist es hierbei die NutzerInnen darauf hinzuweisen Dokumente gründlich zu lesen, bevor man unterschreibt, damit man sich nicht aus versehen zu Sachen verpflichtet, die man gar nicht möchte. Die Anspielung zielt auf „Haben Sie denn auch das Kleingedruckte gelesen?“ ab. 
+Ich habe 7 verschiedene Dokumente in Form von Bildern hinzugefügt, sicherlich wären noch mehr verschiedene Formulare möglich. Insgesamt hat die Umsetzung recht gut funktioniert, aber das Interface könnte noch etwas verbessert und responsive gestaltet werden. In den meistem Fällen entspricht die Antwort inhaltlich meinen Erwartungen, zum Teil könnten sie noch etwas lustiger sein. Wenn die NutzerInnen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es der KI sie richtig zu lesen. </p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="../index.html" class="nav-item">
+            <img src="../images/home.png" alt="Startseite">
+        </a>
+        <a href="seite2.html" class="nav-item">
+            <img src="../images/search.png" alt="Suche">
+        </a>
+        <a href="seite3.html" class="nav-item">
+            <img src="../images/profil.png" alt="Profil">
+        </a>
+    </nav>
+
+</body>
+</html>
