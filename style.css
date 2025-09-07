@@ -32,8 +32,14 @@ main {
 .top-banner a {
     text-decoration: none;
     color: #333;
-    font-size: 1.1rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.top-banner a img {
+    height: 25px; /* Passen Sie die Höhe des Logos nach Bedarf an */
 }
 
 .search-container {
@@ -89,7 +95,8 @@ main {
 }
 
 .topic-item span {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 .topic-header {
