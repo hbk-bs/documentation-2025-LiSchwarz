@@ -36,6 +36,30 @@ main {
     font-weight: bold;
 }
 
+.search-container {
+    margin-bottom: 1.5rem;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#searchInput:focus {
+    border-color: #007AFF;
+}
+
+.search-prompt {
+    color: #888;
+    text-align: center;
+    padding: 2rem 0;
+}
+
 .topic-list {
     display: flex;
     flex-direction: column;

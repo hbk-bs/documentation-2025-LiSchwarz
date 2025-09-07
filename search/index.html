@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suche</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="top-banner">
+        <a href="../index.html">Dokumentation</a>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Suchen nach Themen oder Stichwörtern..." autocomplete="off">
+        </div>
+        <div id="resultsContainer" class="topic-list">
+            <p class="search-prompt">Beginnen Sie zu tippen, um die Dokumentation zu durchsuchen.</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="../index.html" class="nav-item">
+            <img src="../images/home.png" alt="Startseite">
+        </a>
+        <a href="../search/index.html" class="nav-item active"> <!-- 'active' Klasse hier -->
+            <img src="../images/search.png" alt="Suche">
+        </a>
+        <a href="../seite3.html" class="nav-item">
+            <img src="../images/profil.png" alt="Profil">
+        </a>
+    </nav>
+
+<script>
+    // Definiert die durchsuchbaren Seiten und ihre Schlüsselwörter
+    const searchData = [
+        {
+            url: '../teachable_machine/index.html',
+            title: 'Teachable Machine',
+            keywords: ['teachable machine', 'wasserglas', 'ki', 'künstliche intelligenz', 'bilderkennung', 'google']
+        },
+        {
+            url: '../nature_of_code/index.html',
+            title: 'Nature of Code',
+            keywords: ['nature of code', 'wattwurmhaufen', 'p5.js', 'simulation', 'generativ', 'code', 'daniel shiffman']
+        },
+        {
+            url: '../text_the_universal_interface/index.html',
+            title: 'Text, the Universal Interface',
+            keywords: ['text', 'universal interface', 'unterschrift', 'interface', 'gui', 'cli']
+        },
+        {
+            url: '../generative_graphic_novel/index.html',
+            title: 'Generative Graphic Novel',
+            keywords: ['generative', 'graphic novel', 'storytelling', 'illustration', 'ki']
+        },
+        {
+            url: '../debate_club/index.html',
+            title: 'Debate Club',
+            keywords: ['debate', 'discussion', 'argumentation', 'persuasion', 'rhetoric']
+        },
+        {
+            url: '../general_reflection/index.html',
+            title: 'General Reflection',
+            keywords: ['reflection', 'self-assessment', 'feedback', 'improvement', 'learning']
+        }
+
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const resultsContainer = document.getElementById('resultsContainer');
+
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        resultsContainer.innerHTML = ''; // Ergebnisse bei jeder Eingabe löschen
+
+        if (searchTerm.length === 0) {
+            resultsContainer.innerHTML = '<p class="search-prompt">Beginnen Sie zu tippen, um die Dokumentation zu durchsuchen.</p>';
+            return;
+        }
+
+        const filteredResults = searchData.filter(item => 
+            item.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm)) ||
+            item.title.toLowerCase().includes(searchTerm)
+        );
+
+        if (filteredResults.length > 0) {
+            filteredResults.forEach(result => {
+                const resultLink = document.createElement('a');
+                resultLink.href = result.url;
+                resultLink.className = 'topic-item';
+                // Hier können Sie bei Bedarf auch ein Bild hinzufügen
+                resultLink.innerHTML = `<span>${result.title}</span>`;
+                resultsContainer.appendChild(resultLink);
+            });
+        } else {
+            resultsContainer.innerHTML = '<p class="search-prompt">Keine Ergebnisse gefunden.</p>';
+        }
+    });
+</script>
+
+</body>
+</html>
