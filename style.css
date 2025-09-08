@@ -3,7 +3,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     padding-top: 60px; /* Platz für das obere Banner */
     padding-bottom: 70px; /* Platz für die Navigationsleiste lassen */
-    max-width: 800px; /* Maximale Breite der Seite */
+    max-width: 600px; /* Maximale Breite der Seite */
     position: relative; /* Wichtig für die Positionierung der fixierten Elemente */
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional: ein Schatten für den Rahmen */
     min-height: 100vh; /* Stellt sicher, dass der Body mindestens die Höhe des Viewports hat */
@@ -20,7 +20,7 @@ main {
     left: 50%; /* Zentriert das Element */
     transform: translateX(-50%); /* Feinjustierung der Zentrierung */
     width: 100%;
-    max-width: 800px; /* Stellt sicher, dass es nicht breiter als der Body wird */
+    max-width: 600px; /* Stellt sicher, dass es nicht breiter als der Body wird */
     height: 50px;
     background-color: #f8f8f8;
     border-bottom: 1px solid #e7e7e7;
@@ -214,7 +214,7 @@ main {
     left: 50%; /* Zentriert das Element */
     transform: translateX(-50%); /* Feinjustierung der Zentrierung */
     width: 100%;
-    max-width: 800px; /* Stellt sicher, dass es nicht breiter als der Body wird */
+    max-width: 600px; /* Stellt sicher, dass es nicht breiter als der Body wird */
     height: 50px;
     background-color: #f8f8f8;
     border-top: 1px solid #e7e7e7;
