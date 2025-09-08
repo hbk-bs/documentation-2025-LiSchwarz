@@ -96,6 +96,7 @@ main {
 }
 
 .topic-item span {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.9rem;
     font-weight: 400;
 }
@@ -152,14 +153,15 @@ main {
 }
 
 .topic-content h1 {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     text-align: center;
     margin-bottom: 3rem; /* Reduzierter Abstand nach unten */
-    font-size: 1.5rem; /* Kleinere Schriftgröße für H1 */
+    font-size: 1.3rem; /* Kleinere Schriftgröße für H1 */
     font-weight: 300;
 }
 
 .topic-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -170,6 +172,42 @@ main {
     font-weight: 300; /* Dünnere Schrift */
     line-height: 1.6; /* Verbessert die Lesbarkeit bei langen Texten */
     margin-top: 0.1rem;
+}
+
+.topic-content strong {
+    font-weight: 600; /* Extra fette Schrift */
+}
+
+.topic-content code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+/* Styling für Listen */
+.topic-content ul {
+    list-style-type: none; /* Standard-Aufzählungszeichen entfernen */
+    padding-left: 10px;
+    margin: 1.5rem 0;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.8em;
+}
+
+.topic-content ul li {
+    position: relative;
+    padding-left: 25px; /* Platz für das neue Aufzählungszeichen */
+    margin-bottom: 0.75rem; /* Abstand zwischen den Listenelementen */
+}
+
+.topic-content ul li::before {
+    content: '-'; /* Strich als Aufzählungszeichen */
+    position: absolute;
+    left: 0;
+    top: 1px;
+    color: #0000006a; /* Farbe des Aufzählungszeichens */
+    font-weight: bold;
 }
 
 .bottom-nav {
