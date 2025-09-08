@@ -186,13 +186,11 @@ main {
     font-size: 0.85em;
 }
 
-/* Styling für Listen */
 .topic-content ul {
     list-style-type: none; /* Standard-Aufzählungszeichen entfernen */
-    padding-left: 10px;
-    margin: 1.5rem 0;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 0.8em;
+    font-size: 0.8em; /* Angepasst für bessere Lesbarkeit */
+
 }
 
 .topic-content ul li {
