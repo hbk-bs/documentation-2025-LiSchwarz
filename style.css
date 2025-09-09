@@ -27,7 +27,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Stellt sicher, dass das Banner über dem Inhalt liegt */
+    z-index: 2001; /* Stellt sicher, dass das Banner über dem Inhalt liegt */
 }
 
 .top-banner a {
@@ -200,12 +200,52 @@ main {
 }
 
 .topic-content ul li::before {
-    content: '-'; /* Strich als Aufzählungszeichen */
+    content: '→'; /* Pfeil als Aufzählungszeichen */
     position: absolute;
     left: 0;
     top: 1px;
-    color: #0000006a; /* Farbe des Aufzählungszeichens */
+    color: #007AFF; /* Farbe des Aufzählungszeichens */
     font-weight: bold;
+}
+
+/* Styling für das Iframe-Modal */
+.iframe-modal-container {
+    position: fixed;
+    top: 0;
+    left: 50%; /* Zentrierung hinzugefügt */
+    transform: translateX(-50%); /* Zentrierung hinzugefügt */
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    background-color: white; /* Gleicher Hintergrund wie die Seite */
+    z-index: 1500; /* Liegt über dem Inhalt, aber unter Banner/Nav */
+    display: none; /* Standardmäßig ausgeblendet */
+    padding-top: 50px; /* Gleicher Abstand wie Body */
+    padding-bottom: 50px; /* Gleicher Abstand wie Body */
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.iframe-modal-container.visible {
+    display: block; /* Wird per JavaScript sichtbar gemacht */
+}
+
+#external-content-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Zentrierung und Breite werden vom Body geerbt, da der Container im Body liegt */
+}
+
+/* WICHTIG: Wir positionieren den Schließen-Button jetzt relativ zum Modal-Container,
+   der die gleiche Größe und Position wie der Body hat. */
+#iframe-modal .back-link {
+    /* Diese Regel stellt sicher, dass der Pfeil im Modal sichtbar ist */
+    display: block;
+    position: absolute;
+    /* Positionierung exakt wie der normale .back-link */
+    left: 1.5rem;
+    top: 125px;
 }
 
 .bottom-nav {
@@ -221,6 +261,7 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    z-index: 2001; 
 }
 
 .nav-item {

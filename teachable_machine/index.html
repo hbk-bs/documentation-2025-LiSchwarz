@@ -8,9 +8,19 @@
 </head>
 <body>
 
+    <!-- Container für das Iframe-Modal -->
+    <div id="iframe-modal" class="iframe-modal-container">
+        <!-- Der Zurück-Pfeil, der genau wie der andere aussehen wird -->
+        <a href="#" id="close-iframe-btn" class="back-link">
+            <img src="../images/back.png" alt="Zurück">
+        </a>
+        <!-- Das Iframe, das den Inhalt anzeigt -->
+        <iframe id="external-content-frame" src="" allow="camera; microphone"></iframe>
+    </div>
+
     <header class="top-banner">
         <a href="../index.html">
-            <img src="../images/logo.png" alt="Dokumentation Logo">
+            <img src="../images/logo.jpeg" alt="Dokumentation Logo">
         </a>
     </header>
 
@@ -39,7 +49,7 @@ Ich habe einige verschiedene Gläser gezeichnet und dabei mit der Wassermenge un
 Der Reiz liegt darin, dass Nutzer*innen nach vielen Versuchen, bei denen das Glas als halb leer erkannt wurde, irgendwann gezielt versuchen, ein halb volles Ergebnis zu erzielen – und dabei die „Grenze“ suchen, an der das Ergebnis kippt. Denkbar wäre, die KI zusätzlich darauf zu trainieren, auch ein <strong>volles</strong> oder <strong>leeres</strong> Glas zu erkennen.
 Mit dem Interface-Design bin ich insgesamt zufrieden – leider ist die Website aber nur bedingt responsive. Die Anzeige der Wahrscheinlichkeit hätte rückblickend nicht unbedingt sein müssen, da sie das Ergebnis nicht wirklich unterstützt und eher für Verwirrung sorgt.<br>
 Insgesamt war es spannend, sich mit dem Tool auseinanderzusetzen. Auch die Ergebnisse der anderen aus dem Kurs waren interessant – es hat Spaß gemacht, ihre Projekte auszuprobieren.</p>
-        </div>
+      </div>
     </main>
 
     <nav class="bottom-nav">
@@ -53,6 +63,31 @@ Insgesamt war es spannend, sich mit dem Tool auseinanderzusetzen. Auch die Ergeb
             <img src="../images/profil.png" alt="Profil">
         </a>
     </nav>
+
+    <!-- 3. Das Script ist am Ende der Seite -->
+<script>
+    const overlayLink = document.querySelector('.overlay-link');
+    const iframeModal = document.getElementById('iframe-modal');
+    const iframe = document.getElementById('external-content-frame');
+    const closeBtn = document.getElementById('close-iframe-btn');
+
+    // Funktion zum Öffnen des Modals
+    if (overlayLink) {
+        overlayLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Verhindert, dass der Link die Seite verlässt
+            const url = this.href;
+            iframe.src = url;
+            iframeModal.classList.add('visible');
+        });
+    }
+
+    // Funktion zum Schließen des Modals
+    closeBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Verhindert den Sprung zum Seitenanfang
+        iframeModal.classList.remove('visible');
+        iframe.src = ''; // Stoppt die Ausführung des Inhalts im Iframe
+    });
+</script>
 
 </body>
 </html>

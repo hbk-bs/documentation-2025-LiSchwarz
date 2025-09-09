@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-
+    <!-- Container für das Iframe-Modal -->
+    <div id="iframe-modal" class="iframe-modal-container">
+        <!-- Der Zurück-Pfeil, der genau wie der andere aussehen wird -->
+        <a href="#" id="close-iframe-btn" class="back-link">
+            <img src="../images/back.png" alt="Zurück">
+        </a>
+        <!-- Das Iframe, das den Inhalt anzeigt -->
+        <iframe id="external-content-frame" src="" allow="camera; microphone"></iframe>
+    </div>
     <header class="top-banner">
         <a href="../index.html">
-            <img src="../images/logo.png" alt="Dokumentation Logo">
+            <img src="../images/logo.jpeg" alt="Dokumentation Logo">
         </a>
     </header>
 
@@ -73,6 +81,31 @@ Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es d
             <img src="../images/profil.png" alt="Profil">
         </a>
     </nav>
+
+    <!-- 3. Das Script ist am Ende der Seite -->
+<script>
+    const overlayLink = document.querySelector('.overlay-link');
+    const iframeModal = document.getElementById('iframe-modal');
+    const iframe = document.getElementById('external-content-frame');
+    const closeBtn = document.getElementById('close-iframe-btn');
+
+    // Funktion zum Öffnen des Modals
+    if (overlayLink) {
+        overlayLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Verhindert, dass der Link die Seite verlässt
+            const url = this.href;
+            iframe.src = url;
+            iframeModal.classList.add('visible');
+        });
+    }
+
+    // Funktion zum Schließen des Modals
+    closeBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Verhindert den Sprung zum Seitenanfang
+        iframeModal.classList.remove('visible');
+        iframe.src = ''; // Stoppt die Ausführung des Inhalts im Iframe
+    });
+</script>
 
 </body>
 </html>
