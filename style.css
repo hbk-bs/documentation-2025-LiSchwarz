@@ -248,6 +248,18 @@ main {
     top: 125px;
 }
 
+/* --- NEU: Media Query für mobile Geräte --- */
+/* Diese Regeln gelten nur für Bildschirme, die 600px oder schmaler sind */
+@media (max-width: 600px) {
+    #external-content-frame {
+        /* Skaliert das Iframe auf die Breite des Containers */
+        width: 100vw; /* 100% der Viewport-Breite */
+        height: 100vh; /* 100% der Viewport-Höhe */
+        transform-origin: top left; /* Setzt den Skalierungs-Ankerpunkt oben links */
+        transform: scale(calc(100% / 1024)); /* Skaliert den Inhalt herunter */
+    }
+}
+
 .bottom-nav {
     position: fixed; /* Geändert von absolute zu fixed */
     bottom: 0;
