@@ -217,8 +217,7 @@ main {
     width: 100%;
     height: 100%;
     max-width: 600px;
-    background-color: white; /* Gleicher Hintergrund wie die Seite */
-    /* z-index wird entfernt und nur bei .visible gesetzt */
+    /* background-color wird entfernt und nur bei .visible gesetzt */
     display: none; /* Standardmäßig ausgeblendet */
     padding-top: 50px; /* Gleicher Abstand wie Body */
     padding-bottom: 50px; /* Gleicher Abstand wie Body */
@@ -229,6 +228,7 @@ main {
 .iframe-modal-container.visible {
     display: block; /* Wird per JavaScript sichtbar gemacht */
     z-index: 1500; /* z-index wird nur gesetzt, wenn das Modal sichtbar ist */
+    background-color: white; /* Hintergrund wird nur gesetzt, wenn das Modal sichtbar ist */
 }
 
 #external-content-frame {
