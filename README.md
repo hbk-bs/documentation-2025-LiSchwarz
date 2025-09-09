@@ -1,7 +1,7 @@
 # Digitale Grundlagen SoSe 2025
 
 Das ist meine Website zur **Dokumentation** des zweiten Semesters der Digitalen Grundlagen bei Fabian Morón Zirfas.  
-Die Seite ist so aufgebaut, dass die Startseite die verschiedenen Themen des Semsters zeigt. Auf der Navigationsleiste kann man außerdem zur Suchfunktion gelangen und dort bestimmte Begriffe schneller suchen und finden. Dort befindet sich zusätzlich das Impressum.  
+Die Dokumentation ist so aufgebaut, dass die Startseite die verschiedenen Themen des Semsters zeigt. Auf der Navigationsleiste kann man außerdem zur Suchfunktion gelangen und dort bestimmte Begriffe schneller suchen und finden. Dort befindet sich zusätzlich das Impressum.  
 Die Website ist vor allem an die Bildschirmgröße von Handy ausgerichtet und orientiert sich an der typischen Gestaltung von Apps.
 
 ## Die Ergebnisse der Projekte:
