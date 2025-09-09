@@ -160,11 +160,48 @@ main {
     font-weight: 300;
 }
 
+/* Anpassung für das Repository-Icon und den Link */
+.repo-link {
+    display: inline-flex; /* Stellt sicher, dass Icon und Text nebeneinander sind */
+    align-items: center;
+    gap: 8px; /* Abstand zwischen Icon und Text */
+    text-decoration: none;
+    color: black;
+    opacity: 0.5;
+    transition: color 0.2s ease;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.repo-link:hover {
+    color: #000000;
+    opacity: 0.8;
+}
+
+.repo-link img {
+    height: 20px;
+    width: 20px;
+    opacity: 0.5;
+}
+
+.repo-link:hover img {
+    opacity: 1;
+}
+
 .topic-content h2 {
     font-size: 1.1rem;
     font-weight: 700;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+}
+
+/* NEU: Styling für die h3-Überschrift, die den Link enthält */
+.topic-content h3 {
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 .topic-content p {
@@ -190,7 +227,6 @@ main {
     list-style-type: none; /* Standard-Aufzählungszeichen entfernen */
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.8em; /* Angepasst für bessere Lesbarkeit */
-
 }
 
 .topic-content ul li {
@@ -200,12 +236,12 @@ main {
 }
 
 .topic-content ul li::before {
-    content: '→'; /* Pfeil als Aufzählungszeichen */
+    content: '-'; /* Pfeil als Aufzählungszeichen */
     position: absolute;
     left: 0;
     top: 1px;
-    color: #007AFF; /* Farbe des Aufzählungszeichens */
     font-weight: bold;
+    opacity: 0.5;
 }
 
 /* Styling für das Iframe-Modal */
