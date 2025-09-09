@@ -300,3 +300,19 @@ main {
 .bottom-nav .nav-item:hover {
     opacity: 0.8;
 }
+
+/* --- NEU: Media Query zur Korrektur der Iframe-Darstellung auf Handys --- */
+/* Diese Regeln gelten nur für Bildschirme, die 600px oder schmaler sind */
+@media (max-width: 600px) {
+    #external-content-frame {
+        /* Wir zwingen das Iframe auf eine typische Desktop-Breite */
+        width: 980px;
+        height: 1655px; /* Ungefähres 16:9 Verhältnis zu 980px Breite */
+
+        /* Wir skalieren das Iframe so, dass seine 980px Breite genau in den Bildschirm passt */
+        transform: scale(calc(100% / 980));
+        
+        /* Der Ankerpunkt für die Skalierung muss oben links sein */
+        transform-origin: top left;
+    }
+}
