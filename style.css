@@ -239,39 +239,70 @@ main {
     transform: scale(1.1); /* Leichter Zoom-Effekt beim Hovern */
 }
 
-/* NEU: Styling für das Bild-Modal */
+/* --- KORREKTUR: Styling für das Bild-Modal --- */
 .image-modal-container {
-    display: none; /* Standardmäßig ausgeblendet */
+    display: none; /* Das ist die einzige display-Regel, die hier stehen darf */
     position: fixed;
-    z-index: 3000; /* Muss über allem anderen liegen */
-    left: 0;
+    z-index: 1500;
+    left: 50%; /* Zentrierung hinzugefügt */
+    transform: translateX(-50%); /* Zentrierung hinzugefügt */
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.85);
+    max-width: 600px; /* Angepasst an das Hauptlayout */
+    background-color: white;
+    /* Flexbox-Eigenschaften zur Zentrierung */
     justify-content: center;
     align-items: center;
+    padding: 60px 1rem 70px 1rem;
+    box-sizing: border-box;
+}
+
+/* NEU: Der Wrapper für Bild und Button */
+.image-modal-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
 }
 
 .image-modal-container.visible {
     display: flex;
 }
 
+/* Das Bild im Modal */
 .modal-content {
-    max-width: 90%;
-    max-height: 80%;
+    max-width: 85%;
+    max-height: 85%;
     object-fit: contain;
 }
 
 .close-image-btn {
     position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
+    /* Positionierung in der oberen rechten Ecke des Wrappers */
+    top: 10px;
+    right: 10px;
+    color: #000000;
+    opacity: 0.5;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 1501;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    line-height: 1;
 }
+
+.close-image-btn:hover {
+    background-color: transparent; /* Hintergrundänderung entfernen */
+    opacity: 0.8; /* Deckkraft auf 80% setzen */
+}
+
 .topic-content strong {
     font-weight: 600; /* Extra fette Schrift */
 }
@@ -379,7 +410,6 @@ main {
 
 .nav-item:hover {
     background-color: transparent; /* Hintergrundänderung entfernen */
-    border-radius: 0; /* Radiusänderung entfernen */
     opacity: 0.8; /* Deckkraft auf 80% setzen */
 }
 
