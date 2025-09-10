@@ -40,7 +40,7 @@ main {
 }
 
 .top-banner a img {
-    height: 25px; /* Passen Sie die Höhe des Logos nach Bedarf an */
+    height: 30px; /* Passen Sie die Höhe des Logos nach Bedarf an */
 }
 
 .search-container {
@@ -390,15 +390,24 @@ main {
 
 .iframe-modal-container.visible {
     display: block; /* Wird per JavaScript sichtbar gemacht */
-    z-index: 1500; /* z-index wird nur gesetzt, wenn das Modal sichtbar ist */
-    background-color: white; /* Hintergrund wird nur gesetzt, wenn das Modal sichtbar ist */
+    position: fixed; /* WIRD NUR HIER FIXIERT */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1500;
+    background-color: white;
 }
 
 #external-content-frame {
+    position: absolute; /* NEU: Absolut positionieren */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
-    /* Zentrierung und Breite werden vom Body geerbt, da der Container im Body liegt */
+    padding-top: 50px; /* Platz für das Banner schaffen */
+    padding-bottom: 50px; /* Platz für die Nav-Leiste schaffen */
+    box-sizing: border-box; /* Stellt sicher, dass padding die Größe nicht sprengt */
 }
 
 /* WICHTIG: Wir positionieren den Schließen-Button jetzt relativ zum Modal-Container,
@@ -410,6 +419,7 @@ main {
     /* Positionierung exakt wie der normale .back-link */
     left: 1.5rem;
     top: 125px;
+    z-index: 1501; /* Stellt sicher, dass der Pfeil über dem Iframe liegt */
 }
 
 .bottom-nav {
@@ -461,20 +471,4 @@ main {
 /* Das spezifische Item, über das gerade gehovert wird (egal ob aktiv oder nicht), bekommt volle Deckkraft */
 .bottom-nav .nav-item:hover {
     opacity: 0.8;
-}
-
-/* --- NEU: Media Query zur Korrektur der Iframe-Darstellung auf Handys --- */
-/* Diese Regeln gelten nur für Bildschirme, die 600px oder schmaler sind */
-@media (max-width: 600px) {
-    #external-content-frame {
-        /* Wir zwingen das Iframe auf eine typische Desktop-Breite */
-        width: 980px;
-        height: 1655px; /* Ungefähres 16:9 Verhältnis zu 980px Breite */
-
-        /* Wir skalieren das Iframe so, dass seine 980px Breite genau in den Bildschirm passt */
-        transform: scale(calc(100% / 980));
-        
-        /* Der Ankerpunkt für die Skalierung muss oben links sein */
-        transform-origin: top left;
-    }
 }
