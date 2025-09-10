@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+
+    <!-- NEU: Container für das Bild-Modal -->
+    <div id="image-modal" class="image-modal-container">
+        <span class="close-image-btn">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
     <!-- Container für das Iframe-Modal -->
     <div id="iframe-modal" class="iframe-modal-container">
         <!-- Der Zurück-Pfeil, der genau wie der andere aussehen wird -->
@@ -45,8 +52,16 @@
             <p>Die Exkursion auf die Nordseeinsel Amrum stand unter dem Thema <strong>„natürliche Muster und Verhaltensweisen“</strong>. Sie basierte auf dem Buch „The Nature of Code“ von <strong>Daniel Shiffman</strong>, das erklärt, wie man natürliche Phänomene mit Code simulieren kann – zum Beispiel Bewegung, Wachstum oder Verhalten aus der Natur. Es geht darum, die <strong>„Logik der Natur“</strong> in Code zu übersetzen. Daniel Shiffman zeigt, wie man Zufall, Kräfte, Wahrscheinlichkeiten oder evolutionäre Prozesse nutzt, um besonders lebendige, dynamische Simulationen zu erstellen.<br>
 <br>
 Amrum ist geprägt durch weitläufige Natur, Salzwiesen, Dünen und das Wattenmeer. Durch verschiedene Wanderungen und Beobachtungen haben wir die Landschaft intensiv kennengelernt und gezielt nach natürlichen Mustern und Verhaltensweisen wie Tierbewegungen, Pflanzenwachstum oder Wellenbewegungen gesucht. Wir waren mit Kamera und Skizzenbuch unterwegs und haben versucht, unsere Eindrücke festzuhalten.<br>
-Zurück in Braunschweig sichtete ich meine Beobachtungen und entschied, welchen Bereich ich weiter vertiefen möchte. Besonders Interesse weckten bei mir die Wattwürmer und ihre Verhaltensweise. <strong>Wattwurmhaufen entstehen</strong>, wenn der Wattwurm Sand frisst, Nährstoffe herausfiltert und den Rest als spiralförmige Häufchen ausscheidet. Das Loch daneben ist der Eingang zu seiner u-förmigen Wohnröhre. Durch das Loch zieht er Wasser und Nahrung ein, der Haufen ist der Ausgang.<br>
-Ich entwickelte einen <strong>p5.js-Sketch</strong>, um das beobachtete Verhalten zu simulieren. Das stellte sich als schwieriger heraus, als ich zunächst dachte. Anfangs wollte ich eine möglichst naturnahe Animation erstellen, wie ein Wattwurmhaufen entsteht. Das fiel mir jedoch schwer, und die Umsetzung im Code erwies sich als komplizierter als gedacht. Außerdem rückten dabei die natürlichen Muster in den Hintergrund.<br>
+Zurück in Braunschweig sichtete ich meine Beobachtungen und entschied, welchen Bereich ich weiter vertiefen möchte. Besonders Interesse weckten bei mir die Wattwürmer und ihre Verhaltensweise. <strong>Wattwurmhaufen entstehen</strong>, wenn der Wattwurm Sand frisst, Nährstoffe herausfiltert und den Rest als spiralförmige Häufchen ausscheidet. Das Loch daneben ist der Eingang zu seiner u-förmigen Wohnröhre. Durch das Loch zieht er Wasser und Nahrung ein, der Haufen ist der Ausgang.</p>
+
+            <!-- NEU: Bildergalerie -->
+            <div class="image-gallery">
+                <img src="../images/viele_haufen.jpeg" alt="Detailaufnahme Wattwurmhaufen">
+                <img src="../images/haufen.jpeg" alt="Wattwurmhaufen im Sand">
+                <img src="../images/haufen_sketch.jpeg" alt="Übersicht Wattenmeer">
+            </div>
+
+<p>Ich entwickelte einen <strong>p5.js-Sketch</strong>, um das beobachtete Verhalten zu simulieren. Das stellte sich als schwieriger heraus, als ich zunächst dachte. Anfangs wollte ich eine möglichst naturnahe Animation erstellen, wie ein Wattwurmhaufen entsteht. Das fiel mir jedoch schwer, und die Umsetzung im Code erwies sich als komplizierter als gedacht. Außerdem rückten dabei die natürlichen Muster in den Hintergrund.<br>
 Deshalb entschied ich mich, meinen Fokus darauf zu richten, wie<strong> mehrere Haufen als Gruppe</strong> wirken, denn auch im Watt sieht man die Haufen nie allein. Es ist stets eine große Ansammlung, die sich weit über die Fläche erstreckt. Obwohl die exakte Darstellung nicht mehr im Fokus stand, gab es einige Aspekte, die charakteristisch für die Haufen sind und beachtet werden sollten: wichtig ist die <strong>Varianz in Größe, Form und Ausrichtung</strong> – außerdem sollte zu jedem Häufchen ein Loch generiert werden.<br>
 <br>
 Insgesamt fand ich es spannend, mehr über den Wattwurm zu erfahren und sein Verhalten genauer zu beobachten. Die Häufchen könnten noch interessantere und verschlungenere Spiralen bilden, um die Vielfalt und Willkürlichkeit der Realität besser wiederzugeben.<br>
