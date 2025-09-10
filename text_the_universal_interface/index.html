@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <!-- KORREKTUR: Container für das Bild-Modal -->
+    <div id="image-modal" class="image-modal-container">
+        <div class="image-modal-wrapper">
+            <span class="close-image-btn">&times;</span>
+            <img class="modal-content" id="modal-image">
+        </div>
+    </div>
+
     <!-- Container für das Iframe-Modal -->
     <div id="iframe-modal" class="iframe-modal-container">
         <!-- Der Zurück-Pfeil, der genau wie der andere aussehen wird -->
@@ -61,15 +69,46 @@ Der Prozess begann mit der Recherche zu LLMs, dem Experimentieren mit verschiede
 <p>Viele der Ideen, die ich besonders interessant fand – wie die letzten beiden – basierten darauf, dass man <strong>Bilder als Eingabe und wieder als Ausgabe</strong> hat. Leider war dieser Prozess technisch aufwändiger und – soweit ich mich erinnere – mit der kostenlosen Version nicht umsetzbar. Deshalb habe ich diese Ideen verworfen.
 So blieb ich an der Idee hängen, dass die Nutzerinnen <strong>handgeschriebenen Text</strong> eingeben, der von der KI weiterverarbeitet, bewertet oder auf andere Weise interpretiert wird.<br>Die erste Idee, die ich weiterverfolgt habe, befasste sich mit der unleserlichen Schrift von Ärzt*innen auf Rezepten. Die Eingabe sollte über Fotos erfolgen, die Ausgabe in Textform. Die Aufgabe der KI war es, angeblich zu versuchen, die Schrift zu entziffern – aber letztlich daran zu scheitern.<br>
 <br>
-<code>content: 'Du sollst eine Hilfe sein, um schwer leserliche Schriften auf Rezepten vom Arzt zu entziffern. Aber du kannst es selber nicht. Du redest lange drum herum und versuchst es zu lesen, bis du selber sauer, traurig oder frustriert wirst und den Arzt beschimpfst. {result: string}‘</code><br>
-<br>
-Dabei war es egal, ob die KI die Schrift wirklich nicht lesen konnte oder es eigentlich geschafft hätte – das Ziel war eine <strong>humorvolle Kritik</strong> an der mangelnden Lesbarkeit ärztlicher Handschriften. Die Idee: Die Schrift ist so schlimm, dass selbst die KI sie nicht lesen kann. Eine mögliche Erweiterung wäre gewesen, dass Nutzer*innen selbst schreiben und ihre Schrift auf Lesbarkeit überprüfen lassen.<br>In der Kursbesprechung entstand daraus die Idee, diesen Aspekt zu vertiefen. Daher verschob sich der Schwerpunkt des Projekts auf die Schwierigkeit von <strong>Unterschriften auf Touchpads</strong> – z. B. bei Formularen, Paketzustellungen oder ähnlichem.
+<code>content: 'Du sollst eine Hilfe sein, um schwer leserliche Schriften auf Rezepten vom Arzt zu entziffern. Aber du kannst es selber nicht. Du redest lange drum herum und versuchst es zu lesen, bis du selber sauer, traurig oder frustriert wirst und den Arzt beschimpfst. {result: string}‘</code></p>
+
+            <!-- KORREKTUR: Bildergalerie mit Unterschriften -->
+            <div class="image-gallery">
+                <figure>
+                    <img src="../images/referenz_unterschrift.jpeg" alt="Referenz">
+                    <figcaption>Referenz</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/layout.jpeg" alt="Layout">
+                    <figcaption>Layout</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/beispiel.jpeg" alt="Beispiel">
+                    <figcaption>Beispiel</figcaption>
+                </figure>
+            </div>
+
+<p>Dabei war es egal, ob die KI die Schrift wirklich nicht lesen konnte oder es eigentlich geschafft hätte – das Ziel war eine <strong>humorvolle Kritik</strong> an der mangelnden Lesbarkeit ärztlicher Handschriften. Die Idee: Die Schrift ist so schlimm, dass selbst die KI sie nicht lesen kann. Eine mögliche Erweiterung wäre gewesen, dass Nutzer*innen selbst schreiben und ihre Schrift auf Lesbarkeit überprüfen lassen.<br>In der Kursbesprechung entstand daraus die Idee, diesen Aspekt zu vertiefen. Daher verschob sich der Schwerpunkt des Projekts auf die Schwierigkeit von <strong>Unterschriften auf Touchpads</strong> – z. B. bei Formularen, Paketzustellungen oder ähnlichem.
 Unterschriften sind fest in unserem Alltag verankert – von eher belanglosen Dingen wie dem „Muttizettel“ bis hin zum Abschluss eines Kaufvertrags oder der Bestätigung der eigenen Identität.
 Die Aufgabe der KI bestand darin, die Unterschrift zu entziffern und über den Inhalt des Formulars zu informieren.<br>
 <br>
-<code>content: 'Der Nutzer unterschreibt auf dem vorgesehenen Feld. Du sollst versuchen, die Unterschrift zu lesen. Wenn du sie lesen kannst, dann beschreibe sie. Du sollst dich freuen, jubeln und Gutes über den Nutzer schreiben. Wichtig: Wenn du die Unterschrift nicht lesen kannst, sollst du den Nutzer gemein und frustriert beleidigen, sagen, dass er es noch einmal versuchen soll und es besser machen muss. Fordere den Nutzer auf, es erneut zu probieren. Du sollst den Nutzer nur loben, wenn du die Unterschrift lesen kannst. Sonst bist du sehr frustriert, beschwerst dich ausführlich und bist sehr sauer. Antworte in beiden Fällen mindestens in vier Sätzen. Du sollst auf Deutsch antworten und den Nutzer duzen. You are analyzing handwritten text on a form. Describe what you see in a JSON format {result: string}‘</code><br>
-<br>
-Das Ziel ist es, Nutzer*innen spielerisch darauf aufmerksam zu machen, wie wichtig es ist, <strong>Dokumente gründlich zu lesen</strong>, bevor man unterschreibt, damit man sich nicht versehentlich zu etwas verpflichtet, das man gar nicht möchte.Die Anspielung lautet: „Haben Sie denn auch das Kleingedruckte gelesen?“<br>
+<code>content: 'Informiere den Nutzer zuerst auf sehr lustige, humorvolle und kreative Weise über den Inhalt von dem Hintergrundbild. Warne den Nutzer auch davor, wenn etwas wichtiges beachtet werden muss. Der Nutzer wird darauf unterschreiben, jeder Strich wird als Unterschrift gewertet. Versuche die Unterschrift zu lesen und bewerte sie anhand der Lesbarkeit. Wenn die Unterschrift lesbar ist, reagiere überschwänglich positiv und freu dich. Wenn die Unterschrift nicht lesbar ist, sei gemein, traurig, enttäuscht und frustriert und fordere den Nutzer auf, es besser zu machen. Antworte auf Deutsch in mindestens 4 Sätzen und ohne Emojis. Du musst am Ende auf jeden Fall entscheiden, ob die Schrift leserlich ist und ob der Nutzer noch einmal unterschreiben soll. Beschreibe, was du siehst in einem JSON-Format {result: string}'</code></p>
+            <!-- KORREKTUR: Bildergalerie mit Unterschriften -->
+            <div class="image-gallery">
+                <figure>
+                    <img src="../images/fehler.jpeg" alt="Fehler">
+                    <figcaption>Fehler</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/problem.jpeg" alt="Problem">
+                    <figcaption>Problem</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/erfolg.jpeg" alt="Erfolg">
+                    <figcaption>Erfolg</figcaption>
+                </figure>
+            </div>
+
+<p>Das Ziel ist es, Nutzer*innen spielerisch darauf aufmerksam zu machen, wie wichtig es ist, <strong>Dokumente gründlich zu lesen</strong>, bevor man unterschreibt, damit man sich nicht versehentlich zu etwas verpflichtet, das man gar nicht möchte.Die Anspielung lautet: „Haben Sie denn auch das Kleingedruckte gelesen?“<br>
 Ich habe sieben verschiedene Dokumente in Form von Bildern eingebunden – sicher wären noch viele weitere Formulararten denkbar.<br>
 Insgesamt hat die Umsetzung recht gut funktioniert, auch wenn das Interface noch verbessert und responsive gestaltet werden könnte. In den meisten Fällen entsprach die Antwort der KI meinen inhaltlichen Erwartungen – teilweise könnten sie noch etwas humorvoller sein.
 Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es der KI, die Unterschrift korrekt zu lesen.</p>
@@ -88,30 +127,64 @@ Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es d
         </a>
     </nav>
 
-    <!-- 3. Das Script ist am Ende der Seite -->
-<script>
-    const overlayLink = document.querySelector('.overlay-link');
-    const iframeModal = document.getElementById('iframe-modal');
-    const iframe = document.getElementById('external-content-frame');
-    const closeBtn = document.getElementById('close-iframe-btn');
+    <!-- Bestehendes Script für das Iframe-Modal -->
+    <script>
+        const overlayLink = document.querySelector('.overlay-link');
+        const mainContent = document.querySelector('main'); // mainContent wird hier deklariert
+        const iframeModal = document.getElementById('iframe-modal');
+        const iframe = document.getElementById('external-content-frame');
+        const closeIframeBtn = document.getElementById('close-iframe-btn');
 
-    // Funktion zum Öffnen des Modals
-    if (overlayLink) {
-        overlayLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Verhindert, dass der Link die Seite verlässt
-            const url = this.href;
-            iframe.src = url;
-            iframeModal.classList.add('visible');
+        if (overlayLink) {
+            overlayLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                mainContent.style.display = 'none'; // Hauptinhalt ausblenden
+                iframeModal.classList.add('visible');
+                iframe.src = this.href;
+            });
+        }
+
+        if (closeIframeBtn) {
+            closeIframeBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                iframeModal.classList.remove('visible');
+                mainContent.style.display = 'block'; // Hauptinhalt wieder einblenden
+                iframe.src = '';
+            });
+        }
+    </script>
+
+    <!-- Angepasstes Script für das Bild-Modal -->
+    <script>
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const galleryFigures = document.querySelectorAll('.image-gallery figure'); // Wählt die figure-Elemente
+        const closeImageBtn = document.querySelector('.close-image-btn');
+        // Die Variable mainContent ist bereits im vorherigen Skript deklariert
+
+        galleryFigures.forEach(figure => { // Reagiert auf Klicks auf das ganze figure-Element
+            figure.addEventListener('click', function() {
+                mainContent.style.display = 'none';
+                const img = this.querySelector('img'); // Findet das Bild im geklickten figure
+                modalImage.src = img.src; // Setzt die Bildquelle
+                imageModal.classList.add('visible');
+            });
         });
-    }
 
-    // Funktion zum Schließen des Modals
-    closeBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Verhindert den Sprung zum Seitenanfang
-        iframeModal.classList.remove('visible');
-        iframe.src = ''; // Stoppt die Ausführung des Inhalts im Iframe
-    });
-</script>
+        function closeImageModal() {
+            imageModal.classList.remove('visible');
+            mainContent.style.display = 'block';
+        }
+
+        closeImageBtn.addEventListener('click', closeImageModal);
+
+        imageModal.addEventListener('click', function(event) {
+            // Schließt nur, wenn auf den äußeren Container geklickt wird
+            if (event.target === imageModal) {
+                closeImageModal();
+            }
+        });
+    </script>
 
 </body>
 </html>

@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <!-- KORREKTUR: Container für das Bild-Modal -->
+    <div id="image-modal" class="image-modal-container">
+        <div class="image-modal-wrapper">
+            <span class="close-image-btn">&times;</span>
+            <img class="modal-content" id="modal-image">
+        </div>
+    </div>
+
     <!-- Container für das Iframe-Modal -->
     <div id="iframe-modal" class="iframe-modal-container">
         <!-- Der Zurück-Pfeil, der genau wie der andere aussehen wird -->
@@ -54,7 +62,25 @@ Doch in seinem Sturz geschah etwas Wunderbares: Seine Rinde brach auf, seine For
 </code>
 <br>
 Wir haben uns verschiedene Stilrichtungen angeschaut und uns letztendlich für <strong>„Clay Art“ bzw. Bastelton</strong> entschieden, da uns diese visuelle Form besonders ansprach und gut zum Inhalt der Geschichte passt. Wir wollten bewusst einen Stil wählen, der sich gut durch Bildgenerierung erzeugen lässt und analog nur schwer umsetzbar wäre.
-Bei der Perspektive entschieden wir uns dafür, die Objekte frontal und zentriert im Format anzuordnen.<br> Zunächst arbeiteten wir hauptsächlich mit den vorbereiteten Prompts, doch schnell zeigte sich, dass sich damit kein einheitlicher Stil über alle Bilder hinweg erzeugen ließ. Deshalb begannen wir, das <strong>Edit-Tool (Inpainting)</strong> von Midjourney zu nutzen, um gezielt einzelne Objekte zu bearbeiten und zu verändern.
+Bei der Perspektive entschieden wir uns dafür, die Objekte frontal und zentriert im Format anzuordnen.</p> 
+
+            <!-- KORREKTUR: Bildergalerie mit Unterschriften -->
+            <div class="image-gallery">
+                <figure>
+                    <img src="../images/inspiration_baum.jpeg" alt="Detailaufnahme Wattwurmhaufen">
+                    <figcaption>Inspiration</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/referenz_baum.jpeg" alt="Wattwurmhaufen im Sand">
+                    <figcaption>Referenz</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/ergebnis_baum.jpeg" alt="Übersicht Wattenmeer">
+                    <figcaption>Erstes Ergebnis</figcaption>
+                </figure>
+            </div>
+
+<p>Zunächst arbeiteten wir hauptsächlich mit den vorbereiteten Prompts, doch schnell zeigte sich, dass sich damit kein einheitlicher Stil über alle Bilder hinweg erzeugen ließ. Deshalb begannen wir, das <strong>Edit-Tool (Inpainting)</strong> von Midjourney zu nutzen, um gezielt einzelne Objekte zu bearbeiten und zu verändern.
 Um bestimmte Bereiche auszuschneiden, verwendeten wir Adobe Photoshop. So entstanden letztendlich <strong>304 Frames</strong>, die einen relativ konsistenten Stil aufweisen.<br>
 Das Endprodukt setzten wir mit <strong>JavaScript</strong> um, sodass alle Frames in einem Abstand von <strong>70 Millisekunden</strong> angezeigt werden – wie in einem Stop-Motion-Film. Durch Texteinblendungen und weiße Frames werden die einzelnen Szenen voneinander getrennt. Die Formate der Szenen sind dabei bewusst nicht einheitlich, sondern variieren in ihrer Größe, um dem Charakter einer Graphic Novel gerecht zu werden. Der Text dient hierbei als begleitendes Element, um die Leser*innen durch die Geschichte zu führen.<br>
 <br>
@@ -76,30 +102,63 @@ Wir denken, dass sich KI in der nächsten Zeit noch deutlich verbessern wird und
         </a>
     </nav>
     
-    <!-- 3. Das Script ist am Ende der Seite -->
-<script>
-    const overlayLink = document.querySelector('.overlay-link');
-    const iframeModal = document.getElementById('iframe-modal');
-    const iframe = document.getElementById('external-content-frame');
-    const closeBtn = document.getElementById('close-iframe-btn');
+    <!-- KORREKTUR: Ein einziges, kombiniertes Skript für alle Modals -->
+    <script>
+        // Alle Elemente am Anfang definieren
+        const mainContent = document.querySelector('main');
 
-    // Funktion zum Öffnen des Modals
-    if (overlayLink) {
-        overlayLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Verhindert, dass der Link die Seite verlässt
-            const url = this.href;
-            iframe.src = url;
-            iframeModal.classList.add('visible');
-        });
-    }
+        // --- Logik für das Iframe-Modal ---
+        const overlayLink = document.querySelector('.overlay-link');
+        const iframeModal = document.getElementById('iframe-modal');
+        const iframe = document.getElementById('external-content-frame');
+        const closeIframeBtn = document.getElementById('close-iframe-btn');
 
-    // Funktion zum Schließen des Modals
-    closeBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Verhindert den Sprung zum Seitenanfang
-        iframeModal.classList.remove('visible');
-        iframe.src = ''; // Stoppt die Ausführung des Inhalts im Iframe
-    });
-</script>
+        if (overlayLink && iframeModal && closeIframeBtn) {
+            overlayLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                mainContent.style.display = 'none';
+                iframe.src = this.href;
+                iframeModal.classList.add('visible');
+            });
+
+            closeIframeBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                iframeModal.classList.remove('visible');
+                mainContent.style.display = 'block';
+                iframe.src = '';
+            });
+        }
+
+        // --- Logik für das Bild-Modal ---
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const galleryFigures = document.querySelectorAll('.image-gallery figure');
+        const closeImageBtn = document.querySelector('.close-image-btn');
+
+        if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
+            galleryFigures.forEach(figure => {
+                figure.addEventListener('click', function() {
+                    mainContent.style.display = 'none';
+                    const img = this.querySelector('img');
+                    modalImage.src = img.src;
+                    imageModal.classList.add('visible');
+                });
+            });
+
+            function closeImageModal() {
+                imageModal.classList.remove('visible');
+                mainContent.style.display = 'block';
+            }
+
+            closeImageBtn.addEventListener('click', closeImageModal);
+
+            imageModal.addEventListener('click', function(event) {
+                if (event.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
