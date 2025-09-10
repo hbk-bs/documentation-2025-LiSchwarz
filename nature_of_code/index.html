@@ -59,15 +59,15 @@ Zurück in Braunschweig sichtete ich meine Beobachtungen und entschied, welchen 
             <!-- KORREKTUR: Bildergalerie mit Unterschriften -->
             <div class="image-gallery">
                 <figure>
-                    <img src="../images/viele_haufen.jpeg" alt="Detailaufnahme Wattwurmhaufen">
+                    <img src="../images/viele_haufen.jpeg" alt="Wattwurmhaufen im Sand">
                     <figcaption>Haufen im Sand</figcaption>
                 </figure>
                 <figure>
-                    <img src="../images/haufen.jpeg" alt="Wattwurmhaufen im Sand">
+                    <img src="../images/haufen.jpeg" alt="Detailaufnahme Wattwurmhaufen">
                     <figcaption>Detailaufnahme</figcaption>
                 </figure>
                 <figure>
-                    <img src="../images/haufen_sketch.jpeg" alt="Übersicht Wattenmeer">
+                    <img src="../images/haufen_sketch.jpeg" alt="Skizze Wattwurmhaufen">
                     <figcaption>Skizze</figcaption>
                 </figure>
             </div>
@@ -93,11 +93,9 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
         </a>
     </nav>
 
-    <!-- KORREKTUR: Ein einziges, kombiniertes Skript für alle Modals mit Scroll-Position-Speicherung -->
+    <!-- KORREKTUR: Verwendet 'visibility' statt 'display', um die Scroll-Position zu erhalten -->
     <script>
-        // Gemeinsame Variablen für beide Modals
         const mainContent = document.querySelector('main');
-        let lastScrollPosition = 0; // Variable zum Speichern der Scroll-Position
 
         // --- Logik für das Iframe-Modal ---
         const overlayLink = document.querySelector('.overlay-link');
@@ -108,8 +106,7 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
         if (overlayLink && iframeModal && closeIframeBtn) {
             overlayLink.addEventListener('click', function(event) {
                 event.preventDefault();
-                lastScrollPosition = window.scrollY; // Scroll-Position speichern
-                mainContent.style.display = 'none';
+                mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
                 iframe.src = this.href;
                 iframeModal.classList.add('visible');
             });
@@ -117,8 +114,7 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
             closeIframeBtn.addEventListener('click', function(event) {
                 event.preventDefault();
                 iframeModal.classList.remove('visible');
-                mainContent.style.display = 'block';
-                window.scrollTo(0, lastScrollPosition); // Scroll-Position wiederherstellen
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
                 iframe.src = '';
             });
         }
@@ -132,18 +128,16 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
         if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
             galleryFigures.forEach(figure => {
                 figure.addEventListener('click', function() {
-                    lastScrollPosition = window.scrollY; // Scroll-Position speichern
-                    mainContent.style.display = 'none';
+                    mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
                     const img = this.querySelector('img');
                     modalImage.src = img.src;
                     imageModal.classList.add('visible');
-});
+                });
             });
 
             function closeImageModal() {
                 imageModal.classList.remove('visible');
-                mainContent.style.display = 'block';
-                window.scrollTo(0, lastScrollPosition); // Scroll-Position wiederherstellen
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
             }
 
             closeImageBtn.addEventListener('click', closeImageModal);

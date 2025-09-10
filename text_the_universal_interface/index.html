@@ -127,11 +127,9 @@ Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es d
         </a>
     </nav>
 
-    <!-- KORREKTUR: Ein einziges, kombiniertes Skript für alle Modals mit Scroll-Position-Speicherung -->
+    <!-- KORREKTUR: Verwendet 'visibility' statt 'display', um die Scroll-Position zu erhalten -->
     <script>
-        // Gemeinsame Variablen für beide Modals
         const mainContent = document.querySelector('main');
-        let lastScrollPosition = 0; // Variable zum Speichern der Scroll-Position
 
         // --- Logik für das Iframe-Modal ---
         const overlayLink = document.querySelector('.overlay-link');
@@ -142,8 +140,7 @@ Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es d
         if (overlayLink && iframeModal && closeIframeBtn) {
             overlayLink.addEventListener('click', function(event) {
                 event.preventDefault();
-                lastScrollPosition = window.scrollY; // Scroll-Position speichern
-                mainContent.style.display = 'none';
+                mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
                 iframe.src = this.href;
                 iframeModal.classList.add('visible');
             });
@@ -151,8 +148,7 @@ Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es d
             closeIframeBtn.addEventListener('click', function(event) {
                 event.preventDefault();
                 iframeModal.classList.remove('visible');
-                mainContent.style.display = 'block';
-                window.scrollTo(0, lastScrollPosition); // Scroll-Position wiederherstellen
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
                 iframe.src = '';
             });
         }
@@ -166,18 +162,16 @@ Wenn Nutzer*innen sehr ordentlich und in Druckbuchstaben schreiben, gelingt es d
         if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
             galleryFigures.forEach(figure => {
                 figure.addEventListener('click', function() {
-                    lastScrollPosition = window.scrollY; // Scroll-Position speichern
-                    mainContent.style.display = 'none';
+                    mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
                     const img = this.querySelector('img');
                     modalImage.src = img.src;
                     imageModal.classList.add('visible');
-});
+                });
             });
 
             function closeImageModal() {
                 imageModal.classList.remove('visible');
-                mainContent.style.display = 'block';
-                window.scrollTo(0, lastScrollPosition); // Scroll-Position wiederherstellen
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
             }
 
             closeImageBtn.addEventListener('click', closeImageModal);

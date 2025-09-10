@@ -8,6 +8,14 @@
 </head>
 <body>
 
+    <!-- KORREKTUR: Container für das Bild-Modal -->
+    <div id="image-modal" class="image-modal-container">
+        <div class="image-modal-wrapper">
+            <span class="close-image-btn">&times;</span>
+            <img class="modal-content" id="modal-image">
+        </div>
+    </div>
+
     <!-- Container für das Iframe-Modal -->
     <div id="iframe-modal" class="iframe-modal-container">
         <!-- Der Zurück-Pfeil, der genau wie der andere aussehen wird -->
@@ -48,8 +56,25 @@
 <br>
 Ein besonderer Fokus bei unserer interaktiven Website sollte auf <strong>UX (User Experience)</strong> und <strong>UI (User Interface)</strong>, also dem Nutzererlebnis und dem Interface-Design, liegen. Außerdem sollten wir darauf achten, dass die „Magie“ erhalten bleibt – die Nutzer*innen sollen nicht direkt sehen, wie genau der Prozess funktioniert.
 Das Projekt begann mit dem Experimentieren mit der Teachable Machine, wobei ich ausprobierte, welche <strong>Eingabetypen</strong> (Posenerkennung, Geräuscherkennung oder Bildklassifikation) am besten funktionieren, und lernte, wie man die Ergebnisse mit JavaScript oder p5.js darstellen kann.<br>
-Nach einer kurzen Ideenfindung entschied ich mich für ein Projekt, das herausfinden sollte, ob die KI optimistisch oder pessimistisch „denkt“. Dafür bot sich die klassische Frage an: <strong>„Ist das Glas halb voll oder halb leer?“</strong> Vielleicht liefert die KI ja die endgültige Antwort auf diese ungeklärte Frage – sie muss es doch wissen, oder?<br>
-Ich habe einige verschiedene Gläser gezeichnet und dabei mit der Wassermenge und der Glasform variiert. Diese Bilder habe ich dann in zwei Kategorien klassifiziert: halb leer und halb voll. Beide Klassen erhielten die gleiche Anzahl und identische Bilder, um möglichst objektive Ergebnisse zu erhalten.<br>
+Nach einer kurzen Ideenfindung entschied ich mich für ein Projekt, das herausfinden sollte, ob die KI optimistisch oder pessimistisch „denkt“. Dafür bot sich die klassische Frage an: <strong>„Ist das Glas halb voll oder halb leer?“</strong> Vielleicht liefert die KI ja die endgültige Antwort auf diese ungeklärte Frage – sie muss es doch wissen, oder?</p>
+
+            <!-- KORREKTUR: Bildergalerie mit Unterschriften -->
+            <div class="image-gallery">
+                <figure>
+                    <img src="../images/referenz_glas.jpeg" alt="Referenzbild Wasserglas">
+                    <figcaption>Referenz</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/codeschnipsel.jpeg" alt="Codeschnipsel">
+                    <figcaption>Codeschnipsel</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/beispiel_glas.jpeg" alt="Beispiel Glas halb voll">
+                    <figcaption>Beispiel</figcaption>
+                </figure>
+            </div>
+
+<p>Ich habe einige verschiedene Gläser gezeichnet und dabei mit der Wassermenge und der Glasform variiert. Diese Bilder habe ich dann in zwei Kategorien klassifiziert: halb leer und halb voll. Beide Klassen erhielten die gleiche Anzahl und identische Bilder, um möglichst objektive Ergebnisse zu erhalten.<br>
 Überraschenderweise zeigte sich eine klare Tendenz: Die KI erkennt in den meisten Fällen das Glas als halb leer. Ist die KI also <strong>pessimistisch?</strong> So eindeutig lässt sich das natürlich nicht sagen – vielleicht ist mir irgendwo ein Fehler unterlaufen –, aber es war auf jeden Fall ein unterhaltsamer Versuch. Mit einer höheren Anzahl an Referenzbildern ließe sich womöglich ein genaueres Ergebnis erzielen.<br>
 <br>
 Der Reiz liegt darin, dass Nutzer*innen nach vielen Versuchen, bei denen das Glas als halb leer erkannt wurde, irgendwann gezielt versuchen, ein halb volles Ergebnis zu erzielen – und dabei die „Grenze“ suchen, an der das Ergebnis kippt. Denkbar wäre, die KI zusätzlich darauf zu trainieren, auch ein <strong>volles</strong> oder <strong>leeres</strong> Glas zu erkennen.
@@ -70,30 +95,62 @@ Insgesamt war es spannend, sich mit dem Tool auseinanderzusetzen. Auch die Ergeb
         </a>
     </nav>
 
-    <!-- 3. Das Script ist am Ende der Seite -->
-<script>
-    const overlayLink = document.querySelector('.overlay-link');
-    const iframeModal = document.getElementById('iframe-modal');
-    const iframe = document.getElementById('external-content-frame');
-    const closeBtn = document.getElementById('close-iframe-btn');
+    <!-- KORREKTUR: Verwendet 'visibility' statt 'display', um die Scroll-Position zu erhalten -->
+    <script>
+        const mainContent = document.querySelector('main');
 
-    // Funktion zum Öffnen des Modals
-    if (overlayLink) {
-        overlayLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Verhindert, dass der Link die Seite verlässt
-            const url = this.href;
-            iframe.src = url;
-            iframeModal.classList.add('visible');
-        });
-    }
+        // --- Logik für das Iframe-Modal ---
+        const overlayLink = document.querySelector('.overlay-link');
+        const iframeModal = document.getElementById('iframe-modal');
+        const iframe = document.getElementById('external-content-frame');
+        const closeIframeBtn = document.getElementById('close-iframe-btn');
 
-    // Funktion zum Schließen des Modals
-    closeBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Verhindert den Sprung zum Seitenanfang
-        iframeModal.classList.remove('visible');
-        iframe.src = ''; // Stoppt die Ausführung des Inhalts im Iframe
-    });
-</script>
+        if (overlayLink && iframeModal && closeIframeBtn) {
+            overlayLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
+                iframe.src = this.href;
+                iframeModal.classList.add('visible');
+            });
+
+            closeIframeBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                iframeModal.classList.remove('visible');
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
+                iframe.src = '';
+            });
+        }
+
+        // --- Logik für das Bild-Modal ---
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const galleryFigures = document.querySelectorAll('.image-gallery figure');
+        const closeImageBtn = document.querySelector('.close-image-btn');
+
+        if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
+            galleryFigures.forEach(figure => {
+                figure.addEventListener('click', function() {
+                    mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
+                    const img = this.querySelector('img');
+                    modalImage.src = img.src;
+                    imageModal.classList.add('visible');
+                });
+            });
+
+            function closeImageModal() {
+                imageModal.classList.remove('visible');
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
+            }
+
+            closeImageBtn.addEventListener('click', closeImageModal);
+
+            imageModal.addEventListener('click', function(event) {
+                if (event.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
