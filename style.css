@@ -114,6 +114,7 @@ main {
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #f0f0f0;
 }
 
 .overlay-link {
@@ -221,8 +222,19 @@ main {
 .image-gallery {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start; /* Stellt sicher, dass die Elemente oben ausgerichtet sind */
     margin: 2rem 0;
+    gap: 1rem; /* Abstand zwischen den Bildern */
+}
+
+/* NEU: Container für Bild und Unterschrift */
+.image-gallery figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer; /* Zeigt an, dass der ganze Block klickbar ist */
 }
 
 .image-gallery img {
@@ -231,12 +243,31 @@ main {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #f0f0f0;
-    cursor: pointer; /* Zeigt an, dass die Bilder klickbar sind */
     transition: transform 0.2s ease;
 }
 
-.image-gallery img:hover {
-    transform: scale(1.1); /* Leichter Zoom-Effekt beim Hovern */
+/* NEU: Styling für die Bildunterschrift */
+.image-gallery figcaption {
+    margin-top: 0.5rem;
+    text-decoration: none;
+    color: black;
+    opacity: 0.5;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.65em;
+}
+
+/* NEU: Ändert die Unterschrift, wenn man über das Bild oder die Unterschrift fährt */
+.image-gallery figure:hover figcaption {
+    color: #000000;
+    opacity: 0.8;
+}
+
+/* Die alte img:hover Regel wird durch diese ersetzt */
+.image-gallery figure:hover img {
+    transform: scale(1.1);
 }
 
 /* --- KORREKTUR: Styling für das Bild-Modal --- */
@@ -278,6 +309,8 @@ main {
     max-width: 85%;
     max-height: 85%;
     object-fit: contain;
+    border-radius: 50%;
+     border: 2px solid #f0f0f0;
 }
 
 .close-image-btn {

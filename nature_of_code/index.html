@@ -56,12 +56,22 @@
 Amrum ist geprägt durch weitläufige Natur, Salzwiesen, Dünen und das Wattenmeer. Durch verschiedene Wanderungen und Beobachtungen haben wir die Landschaft intensiv kennengelernt und gezielt nach natürlichen Mustern und Verhaltensweisen wie Tierbewegungen, Pflanzenwachstum oder Wellenbewegungen gesucht. Wir waren mit Kamera und Skizzenbuch unterwegs und haben versucht, unsere Eindrücke festzuhalten.<br>
 Zurück in Braunschweig sichtete ich meine Beobachtungen und entschied, welchen Bereich ich weiter vertiefen möchte. Besonders Interesse weckten bei mir die Wattwürmer und ihre Verhaltensweise. <strong>Wattwurmhaufen entstehen</strong>, wenn der Wattwurm Sand frisst, Nährstoffe herausfiltert und den Rest als spiralförmige Häufchen ausscheidet. Das Loch daneben ist der Eingang zu seiner u-förmigen Wohnröhre. Durch das Loch zieht er Wasser und Nahrung ein, der Haufen ist der Ausgang.</p>
 
-            <!-- NEU: Bildergalerie -->
+            <!-- KORREKTUR: Bildergalerie mit Unterschriften -->
             <div class="image-gallery">
-                <img src="../images/viele_haufen.jpeg" alt="Detailaufnahme Wattwurmhaufen">
-                <img src="../images/haufen.jpeg" alt="Wattwurmhaufen im Sand">
-                <img src="../images/haufen_sketch.jpeg" alt="Übersicht Wattenmeer">
+                <figure>
+                    <img src="../images/viele_haufen.jpeg" alt="Detailaufnahme Wattwurmhaufen">
+                    <figcaption>Haufen im Sand</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/haufen.jpeg" alt="Wattwurmhaufen im Sand">
+                    <figcaption>Detailaufnahme</figcaption>
+                </figure>
+                <figure>
+                    <img src="../images/haufen_sketch.jpeg" alt="Übersicht Wattenmeer">
+                    <figcaption>Skizze</figcaption>
+                </figure>
             </div>
+
 
 <p>Ich entwickelte einen <strong>p5.js-Sketch</strong>, um das beobachtete Verhalten zu simulieren. Das stellte sich als schwieriger heraus, als ich zunächst dachte. Anfangs wollte ich eine möglichst naturnahe Animation erstellen, wie ein Wattwurmhaufen entsteht. Das fiel mir jedoch schwer, und die Umsetzung im Code erwies sich als komplizierter als gedacht. Außerdem rückten dabei die natürlichen Muster in den Hintergrund.<br>
 Deshalb entschied ich mich, meinen Fokus darauf zu richten, wie<strong> mehrere Haufen als Gruppe</strong> wirken, denn auch im Watt sieht man die Haufen nie allein. Es ist stets eine große Ansammlung, die sich weit über die Fläche erstreckt. Obwohl die exakte Darstellung nicht mehr im Fokus stand, gab es einige Aspekte, die charakteristisch für die Haufen sind und beachtet werden sollten: wichtig ist die <strong>Varianz in Größe, Form und Ausrichtung</strong> – außerdem sollte zu jedem Häufchen ein Loch generiert werden.<br>
@@ -113,15 +123,16 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
     <!-- Angepasstes Script für das Bild-Modal -->
     <script>
         const imageModal = document.getElementById('image-modal');
-        const modalImage = document.getElementById('modal-image'); // Wird wieder benötigt
-        const galleryImages = document.querySelectorAll('.image-gallery img');
+        const modalImage = document.getElementById('modal-image');
+        const galleryFigures = document.querySelectorAll('.image-gallery figure'); // Wählt die figure-Elemente
         const closeImageBtn = document.querySelector('.close-image-btn');
         // Die Variable mainContent ist bereits im vorherigen Skript deklariert
 
-        galleryImages.forEach(img => {
-            img.addEventListener('click', function() {
+        galleryFigures.forEach(figure => { // Reagiert auf Klicks auf das ganze figure-Element
+            figure.addEventListener('click', function() {
                 mainContent.style.display = 'none';
-                modalImage.src = this.src; // Setzt wieder das src-Attribut
+                const img = this.querySelector('img'); // Findet das Bild im geklickten figure
+                modalImage.src = img.src; // Setzt die Bildquelle
                 imageModal.classList.add('visible');
             });
         });
