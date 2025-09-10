@@ -58,7 +58,8 @@ main {
 }
 
 #searchInput:focus {
-    border-color: #007AFF;
+    border-color: #000000;
+    opacity: 0.8; /* Deckkraft auf 80% setzen */
 }
 
 .search-prompt {
@@ -337,6 +338,12 @@ main {
 .close-image-btn:hover {
     background-color: transparent; /* Hintergrundänderung entfernen */
     opacity: 0.8; /* Deckkraft auf 80% setzen */
+}
+
+mark {
+    background-color: #b5cdf1;
+    color: black;
+    padding: 1px 0;
 }
 
 .topic-content strong {

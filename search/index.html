@@ -41,37 +41,43 @@
         {
             url: '../teachable_machine/index.html',
             title: 'Teachable Machine',
-            keywords: ['teachable machine', 'wasserglas', 'ki', 'künstliche intelligenz', 'bilderkennung', 'google']
+            image: '../images/wasserglas.jpeg', // Bildpfad hinzugefügt
+            keywords: ['teachable machine', 'wasserglas', 'ki', 'künstliche intelligenz', 'bilderkennung', 'google', 'p5.js', 'user experience', 'user interface', 'ux', 'ui', 'optimistisch', 'pessimistisch', 'glas halb voll', 'glas halb leer']
         },
         {
             url: '../nature_of_code/index.html',
             title: 'Nature of Code',
-            keywords: ['nature of code', 'wattwurmhaufen', 'p5.js', 'simulation', 'generativ', 'code', 'daniel shiffman']
+            image: '../images/wattwurmhaufen.jpeg', // Bildpfad hinzugefügt
+            keywords: ['nature of code', 'wattwurmhaufen', 'p5.js', 'simulation', 'generativ', 'code', 'daniel shiffman', 'natürliche muster', 'verhaltensweisen', 'amrum', 'wattwürmer']
         },
         {
             url: '../text_the_universal_interface/index.html',
             title: 'Text, the Universal Interface',
-            keywords: ['text', 'universal interface', 'unterschrift', 'interface', 'gui', 'cli']
+            image: '../images/unterschrift.jpeg', // Bildpfad hinzugefügt
+            keywords: ['text', 'universal interface', 'unterschrift', 'interface', 'natural user interface', 'grafische benutzeroberfläche', 'textbasiert', 'command line interface', 'textschnittstelle', 'grafikdesign', 'ux', 'ui', 'user experience', 'user interface']
         },
         {
             url: '../generative_graphic_novel/index.html',
             title: 'Generative Graphic Novel',
-            keywords: ['generative', 'graphic novel', 'storytelling', 'illustration', 'ki']
+            image: '../images/baum.jpeg', // Bildpfad hinzugefügt
+            keywords: ['generative', 'graphic novel', 'storytelling', 'illustration', 'ki', 'künstliche intelligenz', 'midjourney', 'webseite', 'website', 'html', 'css', 'gruppenarbeit', 'collaboration', 'form', 'farbe', 'typografie', 'bewegung', 'interaktion']
         },
         {
             url: '../debate_club/index.html',
             title: 'Debate Club',
-            keywords: ['debate', 'discussion', 'argumentation', 'persuasion', 'rhetoric']
+            image: '../images/debate.jpeg', // Bildpfad hinzugefügt
+            keywords: ['debate', 'discussion', 'argumentation', 'persuasion', 'rhetoric', 'ki', 'künstliche intelligenz', 'agi', 'artificial general intelligence', 'ethics', 'chancen', 'risiken', 'zukunft', 'gesellschaft', 'technologie', 'digitalisierung']
         },
         {
             url: '../general_reflection/index.html',
             title: 'General Reflection',
-            keywords: ['reflection', 'self-assessment', 'feedback', 'improvement', 'learning']
+            image: '../images/reflexion.jpeg', // Bildpfad hinzugefügt
+            keywords: ['reflection', 'self-assessment', 'feedback', 'improvement', 'learning', 'digital fundamentals', 'digitale grundlagen', 'semester review', 'ki', 'künstliche intelligenz', 'web design', 'html', 'css', 'javascript', 'p5.js', 'ux', 'ui', 'user experience', 'user interface']
         }
 
     ];
 
-    const searchInput = document.getElementById('searchInput');
+const searchInput = document.getElementById('searchInput');
     const resultsContainer = document.getElementById('resultsContainer');
 
     searchInput.addEventListener('input', (e) => {
@@ -91,10 +97,14 @@
         if (filteredResults.length > 0) {
             filteredResults.forEach(result => {
                 const resultLink = document.createElement('a');
-                resultLink.href = result.url;
+                // HIER IST DIE ÄNDERUNG: Der Suchbegriff wird an die URL angehängt
+                resultLink.href = `${result.url}?highlight=${encodeURIComponent(searchTerm)}`;
                 resultLink.className = 'topic-item';
-                // Hier können Sie bei Bedarf auch ein Bild hinzufügen
-                resultLink.innerHTML = `<span>${result.title}</span>`;
+                // Das Bild wird jetzt auch in den Suchergebnissen angezeigt
+                resultLink.innerHTML = `
+                    <img src="${result.image}" alt="${result.title}">
+                    <span>${result.title}</span>
+                `;
                 resultsContainer.appendChild(resultLink);
             });
         } else {

@@ -61,5 +61,47 @@ Für die nächsten Jahre an der HBK nehme ich mir mit, <strong>offen für neue</
         </a>
     </nav>
 
+    <!-- FINALE KORREKTUR: Fügt die Logik zum Entfernen von Markierungen hinzu -->
+    <script>
+        const mainContent = document.querySelector('main');
+
+        // --- Logik zum Markieren und Scrollen ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const highlightTerm = urlParams.get('highlight');
+
+            if (highlightTerm) {
+                const contentArea = document.querySelector('.topic-content');
+                if (contentArea) {
+                    const regex = new RegExp(highlightTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                    contentArea.innerHTML = contentArea.innerHTML.replace(regex, (match) => `<mark>${match}</mark>`);
+                    const firstMark = contentArea.querySelector('mark');
+                    if (firstMark) {
+                        firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            }
+        });
+
+        // NEU: Logik zum Entfernen der restlichen Markierungen bei Klick
+        document.body.addEventListener('click', function(event) {
+            // Prüft, ob das geklickte Element ein <mark>-Tag ist
+            if (event.target.tagName === 'MARK') {
+                const clickedMark = event.target;
+                // Sammelt alle Markierungen auf der Seite
+                const allMarks = document.querySelectorAll('mark');
+
+                // Geht durch alle Markierungen
+                allMarks.forEach(mark => {
+                    // Wenn es nicht die angeklickte Markierung ist...
+                    if (mark !== clickedMark) {
+                        // ...ersetze das <mark>-Element durch seinen reinen Textinhalt.
+                        mark.outerHTML = mark.innerHTML;
+                    }
+                });
+            }
+        }, { once: false }); // Stellt sicher, dass der Listener aktiv bleibt
+    </script>
+
 </body>
 </html>

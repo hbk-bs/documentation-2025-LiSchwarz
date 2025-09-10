@@ -93,51 +93,96 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
         </a>
     </nav>
 
-    <!-- KORREKTUR: Verwendet 'visibility' statt 'display', um die Scroll-Position zu erhalten -->
+    <!-- FINALE KORREKTUR: Fügt die Logik zum Entfernen von Markierungen hinzu -->
     <script>
         const mainContent = document.querySelector('main');
 
+        // --- Logik zum Markieren und Scrollen ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const highlightTerm = urlParams.get('highlight');
+
+            if (highlightTerm) {
+                const contentArea = document.querySelector('.topic-content');
+                if (contentArea) {
+                    const regex = new RegExp(highlightTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                    contentArea.innerHTML = contentArea.innerHTML.replace(regex, (match) => `<mark>${match}</mark>`);
+                    const firstMark = contentArea.querySelector('mark');
+                    if (firstMark) {
+                        firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            }
+        });
+
+        // NEU: Logik zum Entfernen der restlichen Markierungen bei Klick
+        document.body.addEventListener('click', function(event) {
+            // Prüft, ob das geklickte Element ein <mark>-Tag ist
+            if (event.target.tagName === 'MARK') {
+                const clickedMark = event.target;
+                // Sammelt alle Markierungen auf der Seite
+                const allMarks = document.querySelectorAll('mark');
+
+                // Geht durch alle Markierungen
+                allMarks.forEach(mark => {
+                    // Wenn es nicht die angeklickte Markierung ist...
+                    if (mark !== clickedMark) {
+                        // ...ersetze das <mark>-Element durch seinen reinen Textinhalt.
+                        mark.outerHTML = mark.innerHTML;
+                    }
+                });
+            }
+        }, { once: false }); // Stellt sicher, dass der Listener aktiv bleibt
+
+
         // --- Logik für das Iframe-Modal ---
-        const overlayLink = document.querySelector('.overlay-link');
+        const overlayLinks = document.querySelectorAll('.overlay-link');
         const iframeModal = document.getElementById('iframe-modal');
         const iframe = document.getElementById('external-content-frame');
         const closeIframeBtn = document.getElementById('close-iframe-btn');
 
-        if (overlayLink && iframeModal && closeIframeBtn) {
-            overlayLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
-                iframe.src = this.href;
-                iframeModal.classList.add('visible');
+        if (overlayLinks.length > 0 && iframeModal && closeIframeBtn) {
+            overlayLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    if (this.href.includes('github.com') && !this.href.includes('github.io')) {
+                        return;
+                    }
+                    event.preventDefault();
+                    mainContent.style.visibility = 'hidden';
+                    iframe.src = this.href;
+                    iframeModal.classList.add('visible');
+                });
             });
 
             closeIframeBtn.addEventListener('click', function(event) {
                 event.preventDefault();
                 iframeModal.classList.remove('visible');
-                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
+                mainContent.style.visibility = 'visible';
                 iframe.src = '';
             });
         }
 
-        // --- Logik für das Bild-Modal ---
+        // --- Logik für das Bild-Modal (jetzt mit Event Delegation) ---
         const imageModal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-        const galleryFigures = document.querySelectorAll('.image-gallery figure');
         const closeImageBtn = document.querySelector('.close-image-btn');
 
-        if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
-            galleryFigures.forEach(figure => {
-                figure.addEventListener('click', function() {
-                    mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
-                    const img = this.querySelector('img');
+        if (imageModal && modalImage && closeImageBtn) {
+            // Der Listener wird an den Hauptinhalt gehängt
+            mainContent.addEventListener('click', function(event) {
+                // Prüft, ob das geklickte Element (oder ein Elternelement) ein <figure> in der .image-gallery ist
+                const figure = event.target.closest('.image-gallery figure');
+                if (figure) {
+                    mainContent.style.visibility = 'hidden';
+                    const img = figure.querySelector('img');
                     modalImage.src = img.src;
                     imageModal.classList.add('visible');
-                });
+                }
             });
 
             function closeImageModal() {
                 imageModal.classList.remove('visible');
-                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
+                mainContent.style.visibility = 'visible';
             }
 
             closeImageBtn.addEventListener('click', closeImageModal);
