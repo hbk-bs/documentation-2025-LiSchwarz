@@ -93,63 +93,67 @@ Abgeschlossen wurde das Projekt durch eine kurze Dokumentation mit dem Code und 
         </a>
     </nav>
 
-    <!-- Bestehendes Script für das Iframe-Modal -->
+    <!-- KORREKTUR: Ein einziges, kombiniertes Skript für alle Modals mit Scroll-Position-Speicherung -->
     <script>
+        // Gemeinsame Variablen für beide Modals
+        const mainContent = document.querySelector('main');
+        let lastScrollPosition = 0; // Variable zum Speichern der Scroll-Position
+
+        // --- Logik für das Iframe-Modal ---
         const overlayLink = document.querySelector('.overlay-link');
-        const mainContent = document.querySelector('main'); // mainContent wird hier deklariert
         const iframeModal = document.getElementById('iframe-modal');
         const iframe = document.getElementById('external-content-frame');
         const closeIframeBtn = document.getElementById('close-iframe-btn');
 
-        if (overlayLink) {
+        if (overlayLink && iframeModal && closeIframeBtn) {
             overlayLink.addEventListener('click', function(event) {
                 event.preventDefault();
-                mainContent.style.display = 'none'; // Hauptinhalt ausblenden
-                iframeModal.classList.add('visible');
+                lastScrollPosition = window.scrollY; // Scroll-Position speichern
+                mainContent.style.display = 'none';
                 iframe.src = this.href;
+                iframeModal.classList.add('visible');
             });
-        }
 
-        if (closeIframeBtn) {
             closeIframeBtn.addEventListener('click', function(event) {
                 event.preventDefault();
                 iframeModal.classList.remove('visible');
-                mainContent.style.display = 'block'; // Hauptinhalt wieder einblenden
+                mainContent.style.display = 'block';
+                window.scrollTo(0, lastScrollPosition); // Scroll-Position wiederherstellen
                 iframe.src = '';
             });
         }
-    </script>
 
-    <!-- Angepasstes Script für das Bild-Modal -->
-    <script>
+        // --- Logik für das Bild-Modal ---
         const imageModal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-        const galleryFigures = document.querySelectorAll('.image-gallery figure'); // Wählt die figure-Elemente
+        const galleryFigures = document.querySelectorAll('.image-gallery figure');
         const closeImageBtn = document.querySelector('.close-image-btn');
-        // Die Variable mainContent ist bereits im vorherigen Skript deklariert
 
-        galleryFigures.forEach(figure => { // Reagiert auf Klicks auf das ganze figure-Element
-            figure.addEventListener('click', function() {
-                mainContent.style.display = 'none';
-                const img = this.querySelector('img'); // Findet das Bild im geklickten figure
-                modalImage.src = img.src; // Setzt die Bildquelle
-                imageModal.classList.add('visible');
+        if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
+            galleryFigures.forEach(figure => {
+                figure.addEventListener('click', function() {
+                    lastScrollPosition = window.scrollY; // Scroll-Position speichern
+                    mainContent.style.display = 'none';
+                    const img = this.querySelector('img');
+                    modalImage.src = img.src;
+                    imageModal.classList.add('visible');
+});
             });
-        });
 
-        function closeImageModal() {
-            imageModal.classList.remove('visible');
-            mainContent.style.display = 'block';
-        }
-
-        closeImageBtn.addEventListener('click', closeImageModal);
-
-        imageModal.addEventListener('click', function(event) {
-            // Schließt nur, wenn auf den äußeren Container geklickt wird
-            if (event.target === imageModal) {
-                closeImageModal();
+            function closeImageModal() {
+                imageModal.classList.remove('visible');
+                mainContent.style.display = 'block';
+                window.scrollTo(0, lastScrollPosition); // Scroll-Position wiederherstellen
             }
-        });
+
+            closeImageBtn.addEventListener('click', closeImageModal);
+
+            imageModal.addEventListener('click', function(event) {
+                if (event.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+        }
     </script>
 
 </body>

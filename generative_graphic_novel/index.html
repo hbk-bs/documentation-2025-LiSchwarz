@@ -102,9 +102,8 @@ Wir denken, dass sich KI in der nächsten Zeit noch deutlich verbessern wird und
         </a>
     </nav>
     
-    <!-- KORREKTUR: Ein einziges, kombiniertes Skript für alle Modals -->
+    <!-- KORREKTUR: Verwendet 'visibility' statt 'display', um die Scroll-Position zu erhalten -->
     <script>
-        // Alle Elemente am Anfang definieren
         const mainContent = document.querySelector('main');
 
         // --- Logik für das Iframe-Modal ---
@@ -116,7 +115,7 @@ Wir denken, dass sich KI in der nächsten Zeit noch deutlich verbessern wird und
         if (overlayLink && iframeModal && closeIframeBtn) {
             overlayLink.addEventListener('click', function(event) {
                 event.preventDefault();
-                mainContent.style.display = 'none';
+                mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
                 iframe.src = this.href;
                 iframeModal.classList.add('visible');
             });
@@ -124,7 +123,7 @@ Wir denken, dass sich KI in der nächsten Zeit noch deutlich verbessern wird und
             closeIframeBtn.addEventListener('click', function(event) {
                 event.preventDefault();
                 iframeModal.classList.remove('visible');
-                mainContent.style.display = 'block';
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
                 iframe.src = '';
             });
         }
@@ -138,7 +137,7 @@ Wir denken, dass sich KI in der nächsten Zeit noch deutlich verbessern wird und
         if (imageModal && modalImage && galleryFigures.length > 0 && closeImageBtn) {
             galleryFigures.forEach(figure => {
                 figure.addEventListener('click', function() {
-                    mainContent.style.display = 'none';
+                    mainContent.style.visibility = 'hidden'; // Inhalt nur unsichtbar machen
                     const img = this.querySelector('img');
                     modalImage.src = img.src;
                     imageModal.classList.add('visible');
@@ -147,7 +146,7 @@ Wir denken, dass sich KI in der nächsten Zeit noch deutlich verbessern wird und
 
             function closeImageModal() {
                 imageModal.classList.remove('visible');
-                mainContent.style.display = 'block';
+                mainContent.style.visibility = 'visible'; // Inhalt wieder sichtbar machen
             }
 
             closeImageBtn.addEventListener('click', closeImageModal);
