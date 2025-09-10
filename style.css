@@ -259,14 +259,16 @@ main {
     font-size: 0.65em;
 }
 
-/* NEU: Ändert die Unterschrift, wenn man über das Bild oder die Unterschrift fährt */
-.image-gallery figure:hover figcaption {
+/* Ändert die Unterschrift, wenn man über das Element fährt ODER es berührt */
+.image-gallery figure:hover figcaption,
+.image-gallery figure:active figcaption {
     color: #000000;
     opacity: 0.8;
 }
 
-/* Die alte img:hover Regel wird durch diese ersetzt */
-.image-gallery figure:hover img {
+/* Vergrößert das Bild, wenn man über das Element fährt ODER es berührt */
+.image-gallery figure:hover img,
+.image-gallery figure:active img {
     transform: scale(1.1);
 }
 
