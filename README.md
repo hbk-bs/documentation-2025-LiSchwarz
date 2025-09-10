@@ -14,7 +14,7 @@ Die Website ist vor allem an die Bildschirmgröße von Handy ausgerichtet und or
 Jedes Projekt wird kurz thematisch vorgestellt, der Prozess wird erklärt und Probleme benannt. Abgeschlossen werden die digitalen Grundlagen durch eine **Gesamtreflexion** des Semesters, mit einer Erklärung was wir gelernt und welche tools wir benutzt haben.  
 Viel Spaß beim Lesen und Stöbern! :) 
 
-**Linda Schwarz** 
+**Linda Schwarz**  
 HBK Braunschweig  
 Visuelle Kommunikation
 
